@@ -1,10 +1,44 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { ShoppingCart } from "lucide-react";
 
 const Index = () => {
   return (
-    <div className="text-center">
-      <h1 className="text-3xl">Your Blank Canvas</h1>
-      <p>Chat with the agent to start making edits.</p>
+    <div className="space-y-8">
+      {/* Hero Section */}
+      <section className="text-center py-16 bg-gray-100">
+        <div className="container mx-auto">
+          <h1 className="text-4xl font-bold mb-4">Welcome to Our Store</h1>
+          <p className="text-lg mb-8">Find the best products at unbeatable prices.</p>
+          <Button variant="primary" size="lg">Shop Now</Button>
+        </div>
+      </section>
+
+      {/* Featured Products */}
+      <section className="container mx-auto">
+        <h2 className="text-2xl font-bold mb-6">Featured Products</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          {/* Placeholder for products */}
+          {[1, 2, 3, 4].map((product) => (
+            <Card key={product}>
+              <CardHeader>
+                <img src="/placeholder.svg" alt="placeholder" className="mx-auto object-cover w-full h-[200px]" />
+              </CardHeader>
+              <CardContent>
+                <CardTitle>Product Name</CardTitle>
+                <p>$99.99</p>
+              </CardContent>
+              <CardFooter>
+                <Button variant="secondary" className="w-full">
+                  <ShoppingCart className="mr-2 h-4 w-4" />
+                  Add to Cart
+                </Button>
+              </CardFooter>
+            </Card>
+          ))}
+        </div>
+      </section>
     </div>
   );
 };

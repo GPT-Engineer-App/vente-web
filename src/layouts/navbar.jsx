@@ -9,9 +9,10 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { cn } from "@/lib/utils";
-import { CircleUser, Menu, Package2 } from "lucide-react";
+import { CircleUser, Menu, Package2, ShoppingCart } from "lucide-react";
 import { NavLink, Outlet } from "react-router-dom";
 import { navItems } from "../App";
+import { Input } from "@/components/ui/input";
 
 const Layout = () => {
   return (
@@ -19,11 +20,19 @@ const Layout = () => {
       <header className="sticky top-0 flex h-16 items-center gap-4 border-b bg-background px-4 md:px-6 justify-between">
         <DesktopNav />
         <MobileNav />
-        <UserMenu />
+        <div className="flex items-center gap-4">
+          <Input type="text" placeholder="Search..." className="hidden md:block" />
+          <UserMenu />
+          <Button variant="outline" size="icon" className="shrink-0">
+            <ShoppingCart className="h-5 w-5" />
+            <span className="sr-only">Shopping Cart</span>
+          </Button>
+        </div>
       </header>
       <main className="flex-grow overflow-auto">
         <Outlet />
       </main>
+      <Footer />
     </div>
   );
 };
@@ -106,6 +115,23 @@ const NavItem = ({ to, children, className }) => (
   >
     {children}
   </NavLink>
+);
+
+const Footer = () => (
+  <footer className="border-t bg-background py-4">
+    <div className="container mx-auto flex flex-col items-center justify-between gap-4 md:flex-row">
+      <div className="flex gap-4">
+        <NavLink to="/privacy-policy" className="text-muted-foreground hover:text-foreground">Privacy Policy</NavLink>
+        <NavLink to="/terms-of-service" className="text-muted-foreground hover:text-foreground">Terms of Service</NavLink>
+        <NavLink to="/contact" className="text-muted-foreground hover:text-foreground">Contact Us</NavLink>
+      </div>
+      <div className="flex gap-4">
+        <a href="#" className="text-muted-foreground hover:text-foreground">Facebook</a>
+        <a href="#" className="text-muted-foreground hover:text-foreground">Twitter</a>
+        <a href="#" className="text-muted-foreground hover:text-foreground">Instagram</a>
+      </div>
+    </div>
+  </footer>
 );
 
 export default Layout;
